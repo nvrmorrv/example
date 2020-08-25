@@ -1,0 +1,15 @@
+GET http://localhost:50000/master-node/encrypt/somestring
+
+###
+
+GET http://localhost:50000/master-node/decrypt/5ed56aec2829c7772ea0e6b6/LATIN SMALL LETTER LLATIN SMALL LETTER HLATIN SMALL LETTER FCIRCUMFLEX ACCENTLATIN SMALL LETTER LLATIN SMALL LETTER MLATIN SMALL LETTER KLATIN SMALL LETTER BLATIN SMALL LETTRER GGRAVE ACCENT
+
+###
+
+GET http://localhost:50000/master-node/decryptable/5ed56aec2829c7772ea0e6b6
+
+###
+
+GET http://localhost:50000/master-node/operations
+
+###

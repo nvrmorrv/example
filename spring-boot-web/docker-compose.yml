@@ -1,0 +1,80 @@
+version: '3.5'
+services:
+  prometheus:
+    image: "prom/prometheus:v2.19.2"
+    container_name: "prometheus"
+    ports:
+      - 9090:9090
+    volumes:
+      - "./prometheus.yml:/etc/prometheus/prometheus.yml"
+      - "./decryption_failure_rule.yml:/etc/prometheus/decryption_failure_rule.yml"
+  grafana:
+    image: "grafana/grafana:7.1.0"
+    container_name: "grafana"
+    ports:
+      - 3000:3000
+  zipkin:
+    image: "openzipkin/zipkin:2.21.5"
+    container_name: "zipkin"
+    ports:
+      - 9411:9411
+  mongodb:
+    image: "mongo:4.0.19-xenial"
+    container_name: "mongo"
+    ports:
+      - 27017:27017
+  master-node:
+    build: "./master-node"
+    container_name: "m_node"
+    ports:
+      - 50000:50000
+    environment:
+      MN_HOST: "master-node"
+      MN_PORT: 50000
+      MONGO_HOST: mongodb
+      MONGO_PORT: 27017
+      ZIPKIN_HOST: zipkin
+      ZIPKIN_PORT: 9411
+    links:
+      - zipkin
+      - mongodb
+  en-node1:
+    build: "./encryption-node"
+    container_name: "en_node1"
+    ports:
+      - 8081:8081
+    environment:
+      EN_HOST: en-node1
+      EN_PORT: 8081
+      MN_HOST: master-node
+      MN_PORT: 50000
+      ZIPKIN_HOST: zipkin
+      ZIPKIN_PORT: 9411
+  en-node2:
+    build: "./encryption-node"
+    container_name: "en_node2"
+    ports:
+      - 8082:8082
+    environment:
+      EN_HOST: en-node2
+      EN_PORT: 8082
+      MN_HOST: master-node
+      MN_PORT: 50000
+      ZIPKIN_HOST: zipkin
+      ZIPKIN_PORT: 9411
+  en-node3:
+    build: "./encryption-node"
+    container_name: "en_node3"
+    ports:
+      - 8083:8083
+    environment:
+      EN_HOST: en-node3
+      EN_PORT: 8083
+      MN_HOST: master-node
+      MN_PORT: 50000
+      ZIPKIN_HOST: zipkin
+      ZIPKIN_PORT: 9411
+
+
+
+

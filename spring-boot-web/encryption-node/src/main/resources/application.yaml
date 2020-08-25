@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: ${EN_HOST}
+  zipkin:
+    base-url: "http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/"
+server:
+  address: ${EN_HOST}
+  port: ${EN_PORT}
+  servlet:
+    context-path: "/encryption-node"
+master-node:
+  notify-uri: "http://${MN_HOST}:${MN_PORT}/master-node/notify"
+management:
+  endpoints:
+    web:
+      base-path: "/monitor"
+      exposure:
+        include: "health, info, prometheus"
+

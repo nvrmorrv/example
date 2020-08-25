@@ -1,0 +1,10 @@
+server:
+  port: 8091
+  servlet:
+    context-path: "/encryption-node"
+master-node:
+  notify-uri: "http://localhost:50000/master-node/notify"
+management:
+  endpoints:
+    web:
+      base-path: "/monitor"

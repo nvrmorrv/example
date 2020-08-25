@@ -1,0 +1,5 @@
+groups:
+  - name: 'master-node'
+    rules:
+      - record: 'master_node:decryption_failure:count'
+        expr: 'master_node_decryption_requestCount_total - master_node_decryption_successCount_total'

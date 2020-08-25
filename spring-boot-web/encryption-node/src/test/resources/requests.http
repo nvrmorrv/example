@@ -1,0 +1,9 @@
+GET http://localhost:8091/encryption-node/encrypt/somestring
+
+###
+GET http://localhost:8091/encryption-node/decrypt/c7890
+
+###
+GET http://localhost:8091/encryption-node/monitor/health
+
+###

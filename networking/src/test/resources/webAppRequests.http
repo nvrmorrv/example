@@ -1,0 +1,104 @@
+//Conact: 200
+POST http://localhost:50000/operation
+Content-Type: text/json
+Request-ID: 12345
+
+{"operation":"concat","payload":{"strings":["a","b", "c"]}}
+
+###
+//Weahter: 200
+POST http://localhost:50000/operation
+Content-Type: text/json
+Request-ID: 1233213
+
+{"operation":"weather","payload":{"city": "kharkiv" }}
+
+###
+//Weather: 404 not found
+POST http://localhost:50000/operation
+Content-Type: text/json
+Request-ID: 232
+
+{"operation":"weather","payload":{"city": "hjgjgjjh" }}
+
+###
+//Addition: 200
+POST http://localhost:50000/operation
+Content-Type: text/json
+Request-ID: 2322323
+
+{"operation":"addition","payload":{"argA": 20,"argB": 22}}
+
+###
+
+//Extract: 404 not found
+POST http://localhost:50000/operation
+Content-Type: text/json
+Request-ID: 4654
+
+{"operation":"extract","payload":{"id":31}}
+
+###
+//Strore: 200 created
+PUT http://localhost:50000/operation
+Content-Type: text/json
+Request-ID: 979789
+
+{"operation":"store","payload":{"id":31,"content":{"a":23,"b": 37}}}
+
+###
+
+//Strore: 200 replaced
+PUT http://localhost:50000/operation
+Content-Type: text/json
+Request-ID: 11111
+
+{"operation":"store","payload":{"id":31,"content":{"a":23,"b": 37}}}
+
+###
+
+//Extract: 200
+POST http://localhost:50000/operation
+Content-Type: text/json
+Request-ID: 34221
+
+{"operation":"extract","payload":{"id":31}}
+
+###
+
+//400 filtered
+PUT http://localhost:50000/operation
+Content-Type: text/json
+
+{"operation":"store","payload":{"id":31,"content":{"a":23,"b": 37}}}
+
+###
+
+//404 operation not found
+POST http://localhost:50000/operation
+Content-Type: text/json
+Request-ID: 09877
+
+{"operation":"some","payload":{"argA": 20,"argB": 22}}
+
+###
+
+//400 Bad request, wrong request format
+POST http://localhost:50000/operation
+Content-Type: text/json
+Request-ID: 5656
+
+{"payload":{"argA": 20,"argB": 22}}
+
+###
+
+//400 Bad request, wrong payload format
+POST http://localhost:50000/operation
+Content-Type: text/json
+Request-ID: 6643
+
+{"operation":"addition","payload":{"argA": 20,"argB": 22, "argC": 30}}
+
+###
+
+

@@ -1,0 +1,22 @@
+server:
+  address: ${MN_HOST}
+  port: ${MN_PORT}
+  servlet:
+    context-path: "/master-node"
+spring:
+  data:
+    mongodb:
+      port: ${MONGO_PORT}
+      host: ${MONGO_HOST}
+  application:
+    name: ${MN_HOST}
+  zipkin:
+    base-url: "http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/"
+management:
+  endpoints:
+    web:
+      base-path: "/monitor"
+      exposure:
+        include: "health, info, prometheus"
+
+
